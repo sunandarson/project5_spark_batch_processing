@@ -5,6 +5,7 @@ from datetime import datetime
 
 import os
 import json
+from ossaudiodev import SNDCTL_SYNTH_MEMAVL
 import sqlparse
 
 import pandas as pd
@@ -27,8 +28,8 @@ if __name__ == '__main__':
     cursor = conn.cursor()
 
     #connect hadoop
-    conf = connection.config('hadoop')
-    client = connection.hadoop_conn(conf)
+#    conf = connection.config('hadoop')
+#    client = connection.hadoop_conn(conf)
 
     #connect spark
     conf = connection.config('spark')
@@ -66,8 +67,8 @@ if __name__ == '__main__':
         print(f"[INFO] Update WDH Success .....")
 
         #spark processing
-        SparkDF = spark.createDataFrame(df)
-        sparkDF.groupBy("order_date").sum("order_total").sort("order_date") \
+        Sparkdf = spark.createDataFrame(df)
+        Sparkdf.groupBy("order_date").sum("order_total").sort("order_date") \
                 .toPandas() \
                 .to_csv(f"output.csv", index=False)
 

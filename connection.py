@@ -8,6 +8,7 @@ import os
 import json
 import psycopg2
 import hdfs
+import findspark
 
 
 def config(param):
