@@ -1,6 +1,6 @@
 {
     "postgresql":{
-        "host":"172.29.224.1",
+        "host":"172.25.128.1",
         "db":"digitalskola",
         "user":"postgres",
         "pwd":"admin",
@@ -8,7 +8,7 @@
     },
     
     "warehouse":{
-        "host":"172.29.224.1",
+        "host":"172.25.128.1",
         "db":"dwh_digitalskola",
         "user":"postgres",
         "pwd":"admin",

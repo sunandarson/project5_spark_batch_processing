@@ -2,6 +2,8 @@
 
 from configparser import ConfigParser
 from datetime import datetime
+from pyspark.sql.functions import month
+from pyspark.sql import functions as func
 
 import os
 import json
@@ -67,10 +69,13 @@ if __name__ == '__main__':
         print(f"[INFO] Update WDH Success .....")
 
         #spark processing
-        Sparkdf = spark.createDataFrame(df)
-        Sparkdf.groupBy("order_date").sum("order_total").sort("order_date") \
-                .toPandas() \
-                .to_csv(f"output.csv", index=False)
+        sparkdf = spark.createDataFrame(df)
+        sparkdf.groupBy(month('order_date')) \
+                    .agg(func.round(func.sum('order_total')) \
+                    .alias('total_order')) \
+                    .sort(month('order_date')) \
+                    .toPandas() \
+                    .to_csv(f"output.csv", index=False)
 
         print(f"[INFO] Service ETL is Success .....")
     except:
