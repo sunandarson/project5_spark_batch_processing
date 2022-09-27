@@ -1,8 +1,8 @@
+import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark import SparkContext
 
 
-import pandas as pd
 data = [['Scott', 50], ['Jeff', 45], ['Thomas', 54], ['Ann', 34]]
 
 # Create the pandas DataFrame

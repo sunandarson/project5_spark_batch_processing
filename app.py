@@ -71,7 +71,7 @@ if __name__ == '__main__':
         #spark processing
         sparkdf = spark.createDataFrame(df)
         sparkdf.groupBy(month('order_date')) \
-                    .agg(func.round(func.sum('order_total')) \
+                    .agg((func.sum('order_total')) \
                     .alias('total_order')) \
                     .sort(month('order_date')) \
                     .toPandas() \
